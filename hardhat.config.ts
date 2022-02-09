@@ -63,22 +63,21 @@ function createTestnetConfig(network: keyof typeof chainIds): NetworkUserConfig 
   }
 }
 
-const fork_url: string = "https://eth-mainnet.alchemyapi.io/v2/" + ALCHEMY_KEY;
-
 const config: HardhatUserConfig = {
-  defaultNetwork: "hardhat",
+  defaultNetwork: 'hardhat',
   networks: {
     hardhat: {
-      forking: {
-        url: fork_url,
-        blockNumber: 14003880,
-      },
+      // forking: {
+      //   url: "https://eth-mainnet.alchemyapi.io/v2/" + ALCHEMY_KEY,
+      // },
       accounts: {
+        count: 5,
         mnemonic: MNEMONIC,
+        blockNumber: 14003880
       },
       chainId: chainIds.hardhat,
-      blockGasLimit: 28500000
     },
+  },
     mainnet: createTestnetConfig("mainnet"),
     goerli: createTestnetConfig("goerli"),
     kovan: createTestnetConfig("kovan"),
