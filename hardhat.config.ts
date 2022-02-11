@@ -63,21 +63,22 @@ function createTestnetConfig(network: keyof typeof chainIds): NetworkUserConfig 
   }
 }
 
+// Setting all .env variables before running hardhat is required!
+
 const config: HardhatUserConfig = {
-  defaultNetwork: 'hardhat',
+  defaultNetwork: "hardhat",
   networks: {
     hardhat: {
-      // forking: {
-      //   url: "https://eth-mainnet.alchemyapi.io/v2/" + ALCHEMY_KEY,
-      // },
+      forking: {
+        url: "https://eth-mainnet.alchemyapi.io/v2/" + ALCHEMY_KEY,
+        blockNumber: 14003880,
+      },
       accounts: {
         count: 5,
         mnemonic: MNEMONIC,
-        blockNumber: 14003880
       },
       chainId: chainIds.hardhat,
     },
-  },
     mainnet: createTestnetConfig("mainnet"),
     goerli: createTestnetConfig("goerli"),
     kovan: createTestnetConfig("kovan"),
